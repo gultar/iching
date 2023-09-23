@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+    <script src="./circletype.min.js"></script>
+</head>
+<body>
+    <div class="mainWrapper">
+        <div class="container">
+            <div class="first">
+                <div class="col">He sent out his word and healed them; he rescued them from the grave.</div>
+                <div class="col">He sent out his word and healed them; he rescued them from the grave.</div>
+                <div class="col">He sent out his word and healed them; he rescued them from the grave.</div>
+                <div class="col">He sent out his word and healed them; he rescued them from the grave.</div>
+                <div class="col">He sent out his word and healed them; he rescued them from the grave.</div>
+            </div>
+            
+            <div class="second">
+                <div class="row">He sent out his word and healed them; he rescued them from the grave.</div>
+                <div class="row">He sent out his word and healed them; he rescued them from the grave.</div>
+                <div class="row">He sent out his word and healed them; he rescued them from the grave.</div>
+                <div class="row">He sent out his word and healed them; he rescued them from the grave.</div>
+                <div class="row">He sent out his word and healed them; he rescued them from the grave.</div>
+            </div>
+            <div class="borderCol">He sent out his word and healed them; he rescued them from the grave.</div>
+            <div class="borderRow">He sent out his word and healed them; he rescued them from the grave.</div>
+    
+            <div class="numbers">
+                <div class="numCol">
+                    <div class="numCell">749</div>
+                    <div class="numCell">742</div>
+                    <div class="numCell">755</div>
+                    <div class="numCell">748</div>
+                    <div class="numCell">761</div>
+                </div>
+                <div class="numCol">
+                    <div class="numCell">762</div>
+                    <div class="numCell">750</div>
+                    <div class="numCell">743</div>
+                    <div class="numCell">756</div>
+                    <div class="numCell">744</div>
+                </div>
+                <div class="numCol">
+                    <div class="numCell">745</div>
+                    <div class="numCell">763</div>
+                    <div class="numCell">751</div>
+                    <div class="numCell">739</div>
+                    <div class="numCell">757</div>
+                </div>
+                <div class="numCol">
+                    <div class="numCell">758</div>
+                    <div class="numCell">746</div>
+                    <div class="numCell">759</div>
+                    <div class="numCell">752</div>
+                    <div class="numCell">740</div>
+                </div>
+                <div class="numCol">
+                    <div class="numCell">741</div>
+                    <div class="numCell">754</div>
+                    <div class="numCell">747</div>
+                    <div class="numCell">760</div>
+                    <div class="numCell">753</div>
+                </div>
+    
+    
+            </div>
+        </div>
+        <div id="test">
+            <fieldset>
+                <legend> How long, Lord? Will you forget me forever? How long will you hide your face from me? How long must I wrestle with my thoughts and day after day have sorrow in my heart? How long will my enemy triumph over me? Look on me and answer, Lord my God. Give light to</legend>
+            </fieldset>
+        </div>
+        <div id="test2">
+            <fieldset>
+                <legend>my eyes or I will sleep in death, and my enemy will say, “I have overcome him,” and my foes will rejoice when I fall. But I trust in your unfailing love; my heart rejoices in your salvation. I will sing the Lord’s praise, for he has been good to me.</legend>
+            </fieldset>
+        </div>
+        <div class="starContainer"> 
+            <div class="divineNameContainer">
+                <div class="nameHorizontal1 divineName">עזריאל</div>
+                <div class="nameHorizontal2 divineName">עזריאל</div>
+                <div class="nameVertical1 divineName">עזריאל</div>
+                <div class="nameVertical2 divineName">עזריאל</div>
+            </div>
+            <div class="star-upper-left star">
+                <img src="./star_of_david-adonai.png"/>
+            </div>
+            <div class="star-lower-left star">
+                <img src="./star_of_david-adonai.png"/>
+            </div>
+            <div class="star-upper-right star">
+                <img src="./star_of_david-adonai.png"/>
+            </div>
+            <div class="star-lower-right star">
+                <img src="./star_of_david-adonai.png"/>
+            </div>
+        </div>
+    
+    
+    </div>
+    <style>
+        body{
+            position: relative;
+        }
+        .mainWrapper{
+            width: auto;
+            height: auto;
+            display: block;
+            position:relative;
+        }
+        .starContainer{
+            height: 1000px;
+            width: 1000px;
+            display: grid;
+            left: 15%;
+            margin-top: 4%;
+            position: absolute;
+        }
+        .container{
+            height: 500px;
+            width: 500px;
+            margin-top: 21%;
+            margin-left: 30%;
+            display: block;
+            position: absolute;
+            font-style: "Brush Script MT, Brush Script Std, cursive";
+        }
+        
+        .divineNameContainer{
+            width: 620px;
+            height: 620px;
+            margin-left: 15%;
+            margin-top:18%;
+            position:absolute;
+        }
+
+        .divineName{
+           font-size: 30pt;
+           color:red;
+           display: block;
+           position:absolute
+        }
+        .nameHorizontal1{
+            
+            margin-left: 42%;
+        }
+        .nameHorizontal2{
+            margin-top: 90%;
+            margin-left: 42%;
+            transform: rotate(180deg);
+        }
+        .nameVertical1{
+            writing-mode: vertical-rl;
+            margin-top: 42%;
+            margin-left: 90%;
+        }
+        .nameVertical2{
+            writing-mode: vertical-lr;
+            transform: rotate(180deg);
+            margin-top: 42%;
+        }
+
+        .first{
+            display: grid;
+            grid-template-columns: 20% 20% 20% 20% 20%;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            font-family: "Brush Script MT", cursive; 
+        }
+
+        .second{
+            display: grid;
+            grid-template-rows: 20% 20% 20% 20% 20%;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            font-family: "Brush Script MT", cursive; 
+            
+        }
+
+        .col{
+            writing-mode: vertical-lr;
+            font-size: 16pt;
+        }
+        .borderCol{
+            writing-mode: vertical-lr;
+            height: 100%;
+            position:absolute;
+            width: 20%;
+            left: 96.5%;
+            font-size: 16pt;
+            font-family: "Brush Script MT", cursive; 
+        }
+        .borderRow{
+            height: 100%;
+            position:absolute;
+            height: 20%;
+            width: 100%;
+            top: 96.5%;
+            font-size: 16pt;
+            font-family: "Brush Script MT", cursive; 
+        }
+        .row{
+            font-size: 16pt;
+        }
+        .numbers{
+            display:grid;
+            width: 100%;
+            height: 100%;
+            grid-template-columns: 20% 20% 20% 20% 20%;
+            grid-template-rows: 20% 20% 20% 20% 20%;
+            position: absolute;
+            margin-left: 1%;
+            margin-top: 11%;
+            color: red;
+            
+        }
+        .numCell{
+            height: 100%;
+            display: block;
+            transform: rotate(45deg);
+            font-size: 16pt;
+        }
+
+        #test{
+            width: 500px;
+            height: 500px;
+            position:absolute;
+            left: 30%;
+            margin-top: 7%;
+            font-size: 22pt;
+            font-family: "Brush Script MT", cursive; 
+        }
+
+        #test2{
+            width: 500px;
+            height: 500px;
+            position:absolute;
+            left: 30%;
+            margin-top: 9.5%;
+            font-size: 22pt;
+            font-family: "Brush Script MT", cursive; 
+        }
+
+        .star-upper-left img{
+            transform: rotate(-45deg);
+        }
+        .star-lower-left img{
+            margin-top:640%;
+            transform: rotate(-135deg);
+        }
+        .star-upper-right img{
+            margin-left: 630%;
+            transform: rotate(45deg);
+        }
+        .star-lower-right img{
+            margin-left:630%;
+            margin-top:640%;
+            transform: rotate(135deg);
+        }
+        .star{
+            position:absolute;
+        }
+        img{
+            max-width: 65%;
+            max-height: auto;
+        }
+    </style>
+        <script>
+            new CircleType(document.getElementById("test"))
+            .dir(1)
+            .radius(180)
+            new CircleType(document.getElementById("test2"))
+            .dir(1)
+            .radius(180)
+        </script>
+</body>
+</html>

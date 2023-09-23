@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"></link>
+    <script src="https://unpkg.com/htmx.org@1.9.6" integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/styles.css"></link>
     <title>Document</title>
 </head>
@@ -23,7 +24,8 @@
                         <div class="item">
                           <div class="header">Consult Yi-Jing</div>
                           <div class="menu" style="margin: auto;">
-                              <input placeholder="Hexagram #" value="" />
+                              <input placeholder="Hexagram #" value="" id="hexNumberTextbox" />
+                              <button onClick="selectHexagram()" type="submit">Select Hexagram</button>
                           </div>
                         </div>
                         <div class="item">
@@ -58,6 +60,10 @@
         </div>
     </div>
 </body>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
 <script>
     
     // var testObject = { 'one': 1, 'two': 2, 'three': 3 };
@@ -69,13 +75,18 @@
     // var retrievedObject = localStorage.getItem('testObject');
 
     // console.log('retrievedObject: ', JSON.parse(retrievedObject));
-
+    $(document).keypress((e) => {
+      
+      // Enter key corresponds to number 13
+      if (e.which === 13) {
+          // $('.info').submit();
+          console.log('form submitted');
+          selectHexagram()
+      }
+    })
 </script>
 <script src="./js/yijing.js"></script>
 <script src="./js/eventHandler.js"></script>
-<script
-  src="https://code.jquery.com/jquery-3.6.0.min.js"
-  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-  crossorigin="anonymous"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 </html>

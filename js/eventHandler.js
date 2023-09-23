@@ -32,69 +32,93 @@ function cast(){
 }
 
 function selectHexagram(){
-    $('#title').html("")
-    $('#text').html("")
-    $('#changingTitle').html("")
-    $('#changingText').html("")
+    console.log("Clearing HTML elements...");
+    $('#title').html("");
+    $('#text').html("");
+    $('#changingTitle').html("");
+    $('#changingText').html("");
     $('#lines').html("");
     $('#changingLines').html("");
-    $('sectionSeperator').html("")
-    var number = $("#hexNumberTextbox").val()
-    number = parseInt(number)
+    $('sectionSeperator').html("");
+
+    console.log("Getting the hexNumberTextbox value...");
+    var number = $("#hexNumberTextbox").val();
+    number = parseInt(number);
+    console.log("number:", number);
+
+    console.log("Creating a new Hexagram instance...");
     var myHex = new Hexagram();
-    var ichingHexagramTable = [ //--- Hexagram lookup table - King Wen's trigram order is used
-    [1, 34, 5, 26, 11, 9, 14, 43],
-    [25, 51, 3, 27, 24, 42, 21, 17],
-    [6, 40, 29, 4, 7, 59, 64, 47],
-    [33, 62, 39, 52, 15, 53, 56, 31],
-    [12, 16, 8, 23, 2, 20, 35, 45],
-    [44, 32, 48, 18, 46, 57, 50, 28],
-    [13, 55, 63, 22, 36, 37, 30, 49],
-    [10, 54, 60, 41, 19, 61, 38, 58]
+    console.log("myHex:", myHex);
+
+    console.log("Defining Iching Hexagram table...");
+    var ichingHexagramTable = [
+        [1, 34, 5, 26, 11, 9, 14, 43],
+        [25, 51, 3, 27, 24, 42, 21, 17],
+        [6, 40, 29, 4, 7, 59, 64, 47],
+        [33, 62, 39, 52, 15, 53, 56, 31],
+        [12, 16, 8, 23, 2, 20, 35, 45],
+        [44, 32, 48, 18, 46, 57, 50, 28],
+        [13, 55, 63, 22, 36, 37, 30, 49],
+        [10, 54, 60, 41, 19, 61, 38, 58]
     ];
-    var trigramNbs = [ //--- All the possible trigrams
-    "111",
-    "100",
-    "010",
-    "001",
-    "000",
-    "011",
-    "101",
-    "110"
+    console.log("ichingHexagramTable:", ichingHexagramTable);
+
+    console.log("Defining trigram numbers...");
+    var trigramNbs = [
+        "111",
+        "100",
+        "010",
+        "001",
+        "000",
+        "011",
+        "101",
+        "110"
     ];
+    console.log("trigramNbs:", trigramNbs);
+
+    console.log("Initializing bottomTrigramNumber and topTrigramNumber...");
     var bottomTrigramNumber = 0;
     var topTrigramNumber = 0;
 
-    for(var line of ichingHexagramTable){
-        var bottomIndex = ichingHexagramTable.indexOf(line)
-        for(var column of line){
-        var topIndex = line.indexOf(column)
-                if(number == column){
-                    bottomTrigramNumber = bottomIndex
-                    topTrigramNumber = topIndex
-                }
+    console.log("Iterating through the Iching Hexagram table...");
+    for (var line of ichingHexagramTable) {
+        var bottomIndex = ichingHexagramTable.indexOf(line);
+        for (var column of line) {
+            var topIndex = line.indexOf(column);
+            if (number == column) {
+                bottomTrigramNumber = bottomIndex;
+                topTrigramNumber = topIndex;
+            }
         }
     }
+    console.log("bottomTrigramNumber:", bottomTrigramNumber);
+    console.log("topTrigramNumber:", topTrigramNumber);
 
+    console.log("Creating binary string...");
+    let binaryString = trigramNbs[bottomTrigramNumber] + trigramNbs[topTrigramNumber];
+    let binaryLines = [...binaryString];
+    let sixlines = [];
+    binaryLines.reverse();
+    console.log("binaryString:", binaryString);
+    console.log("binaryLines:", binaryLines);
 
-    let binaryString = trigramNbs[bottomTrigramNumber] + trigramNbs[topTrigramNumber]
-    let binaryLines = [...binaryString]
-    let sixlines = []
-    binaryLines.reverse()
-    for(var i=0; i < binaryLines.length; i++){
-        var char = binaryLines[i]
-        sixlines[i] = 8 - parseInt(char)
-        $('#lines').append("<p>"+myHex.drawLine(sixlines[i])+"</p>");
-
+    console.log("Calculating lines and appending them to #lines...");
+    for (var i = 0; i < binaryLines.length; i++) {
+        var char = binaryLines[i];
+        sixlines[i] = 8 - parseInt(char);
+        $('#lines').append("<p>" + myHex.drawLine(sixlines[i]) + "</p>");
+        console.log("Line", i + 1, "Value:", sixlines[i]);
     }
-    
-    $('#title').html(iching.posts[number -1].title)
-    $('#text').html(iching.posts[number -1].text)
-    myHex.trigrams = [bottomTrigramNumber, topTrigramNumber]
-    myHex.hexagramNumber = number;
-    myHex.sixlines = sixlines
-    console.log(myHex)
 
+    console.log("Setting title, text, and Hexagram properties...");
+    $('#title').html(iching.posts[number - 1].title);
+    $('#text').html(iching.posts[number - 1].text);
+    myHex.trigrams = [bottomTrigramNumber, topTrigramNumber];
+    myHex.hexagramNumber = number;
+    myHex.sixlines = sixlines;
+
+    console.log("Logging the Hexagram object...");
+    console.log(myHex);
 }
 
 const updateReadingsStorage = (myHex) =>{

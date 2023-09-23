@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+    <script src="./circletype.min.js"></script>
+</head>
+<body>
+    <div class="magic-square">
+        <div class="column1">
+            <div class="cell1">
+                <p>ד</p>
+            </div>
+            <div class="cell2">
+                <p>ט</p>
+            </div>
+            <div class="cell3">
+                <p>ה</p>
+            </div>
+            <div class="cell4">
+                <p>יו</p>
+            </div>
+        </div>
+        <div class="column2">
+            <div class="cell1">
+                <p>יד</p>
+            </div>
+            <div class="cell2">
+                <p>ז</p>
+            </div>
+            <div class="cell3">
+                <p>יא</p>
+            </div>
+            <div class="cell4">
+                <p>ב</p>
+            </div>
+        </div>
+        <div class="column3">
+            <div class="cell1">
+                <p>יה</p>
+            </div>
+            <div class="cell2">
+                <p>ו</p>
+            </div>
+            <div class="cell3">
+                <p>י</p>
+            </div>
+            <div class="cell4">
+                <p>ג</p>
+            </div>
+        </div>
+        <div class="column4">
+            <div class="cell1">
+                <p>א</p>
+            </div>
+            <div class="cell2">
+                <p>יב</p>
+            </div>
+            <div class="cell3">
+                <p>ח</p>
+            </div>
+            <div class="cell4">
+                <p>יג</p>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="test">
+        <fieldset>
+            <legend>
+                גַּ֚ם כִּֽי־אֵלֵ֨ךְ בְּגֵ֪יא צַלְמָ֡וֶת לֹא־אִ֘ירָ֚א רָ֗ע כִּי־אַתָּ֥ה עִמָּדִ֑י
+            </legend>
+        </fieldset>
+        <fieldset>
+            <legend>
+                גַּ֚ם כִּֽי־אֵלֵ֨ךְ בְּגֵ֪יא צַלְמָ֡וֶת לֹא־אִ֘ירָ֚א רָ֗ע כִּי־אַתָּ֥ה עִמָּדִ֑י
+            </legend>
+        </fieldset>
+        
+        <fieldset>
+            <legend>
+                גַּ֚ם כִּֽי־אֵלֵ֨ךְ בְּגֵ֪יא צַלְמָ֡וֶת לֹא־אִ֘ירָ֚א רָ֗ע כִּי־אַתָּ֥ה עִמָּדִ֑י
+            </legend>
+        </fieldset>
+        <fieldset>
+            <legend>
+                גַּ֚ם כִּֽי־אֵלֵ֨ךְ בְּגֵ֪יא צַלְמָ֡וֶת לֹא־אִ֘ירָ֚א רָ֗ע כִּי־אַתָּ֥ה עִמָּדִ֑י
+            </legend>
+        </fieldset> עזריאל
+    </div>
+    
+    <style>
+        .container {
+            display: grid; 
+            margin: auto; /* to center */
+            margin-top: calc(50vh - 170px); /* to center */
+            width: 450px; height: 450px; 
+            position: relative;
+            
+        }
+
+        .magic-square{
+            position: absolute;
+            display: grid;
+            /* grid-template-columns: 25% 25% 25% 25%;
+            grid-template-rows: 25% 25% 25% 25%; */
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            border: 1px solid black;
+            left: 42.5%;
+            top: 35%;
+            width: 15%;
+            height: 38%;
+        }
+
+        .cell1, .cell2, .cell3, .cell4{
+            border: 1px solid black;
+            text-align: center;
+            
+            padding-bottom: 10px;
+            height: 42px;
+        }
+
+        p{
+            /* transform: rotate(45deg); */
+            font-size: 20pt;
+        }
+
+        fieldset {
+            border: 10px solid transparent; 
+            box-sizing: border-box; 
+            grid-area: 1 / 1; /* first row, first column */
+            padding: 20px; 
+            width: inherit; 
+            margin-bottom: 40px;
+        }
+
+        fieldset:nth-of-type(1){ transform: rotate(0deg); }
+        /* rotate to right */
+        fieldset:nth-of-type(2){ transform: rotate(90deg); }
+        /* rotate to bottom */
+        fieldset:nth-of-type(3){ transform: rotate(-180deg); }
+        /* rotate to left */
+        fieldset:nth-of-type(4){ transform: rotate(-90deg); }
+
+
+        legend {
+            font: 15pt/0 'Averia Serif Libre'; 
+            margin: auto; /* to center */
+            padding: 0 4px; 
+        }
+
+        fieldset:nth-of-type(3) > legend { 
+            transform: rotate(180deg);
+        }
+    </style>
+    <script>
+        new CircleType(document.getElementById("test"))
+        .dir(1)
+        .radius(180)
+    </script>
+</body>
+</html>
