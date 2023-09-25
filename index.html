@@ -4,60 +4,71 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"></link>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"></link> -->
     <script src="https://unpkg.com/htmx.org@1.9.6" integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/styles.css"></link>
     <title>Document</title>
 </head>
-<body style="overflow: hidden;background-color: darkgray;">
-    <div class="ui container" style="margin: 0; padding: 30px;">
-        <div class="ui grid">
-            <div class="ui row" style="background-color: white;">
-                <div class="four wide column">
-                    <div class="ui vertical menu" style="height: 88vh;" >
-                        <div class="item">
-                          <div class="header">Cast Hexagram</div>
-                          <div class="menu">
-                            <a class="item" onClick="cast()">Three coins method</a>
-                          </div>
-                        </div>
-                        <div class="item">
-                          <div class="header">Consult Yi-Jing</div>
-                          <div class="menu" style="margin: auto;">
-                              <input placeholder="Hexagram #" value="" id="hexNumberTextbox" />
-                              <button onClick="selectHexagram()" type="submit">Select Hexagram</button>
-                          </div>
-                        </div>
-                        <div class="item">
-                          <div class="header">Past readings</div>
-                          <div class="menu">
-                            <a class="item">View list</a>
-                          </div>
-                        </div>
-                        <div class="item">
-                          <div class="header">Data (JSON)</div>
-                          <div class="menu">
-                            <a class="item">Export Readings</a>
-                            <a class="item">Import Readings</a>
-                          </div>
-                        </div>
-                      </div>
-                </div>
-                <div class="eleven wide column display" style="margin: 20px; overflow-y: scroll; height: 85vh; width: 100vh; text-align: center;">
-                    <div class="display">
-                        <div id="title"></div>
-                        <div id="lines"></div>
-                        <div id="text"></div>
-                        <div id="SectionSeperator"></div>
-                        <div id="changingTitle"></div>
-                        <div id="changingLines"></div>
-                        <div id="changingText"></div>
-                    </div>
-                </div>
-                
-                 
+<body style="">
+    <div class="container" style="">
+      <div class="display-window" style="">
+        <div class="cast-menu" style="" >
+          <div class="section">
+            <div class="menu">
+              <button class="item" onClick="cast()">Cast</button>
             </div>
+          </div>
+          <div class="section">
+            <div class="menu" style="margin: auto;">
+                <input class="item" placeholder="Hex #" value="" id="hexNumberTextbox" />
+                <button class="item select-button" onClick="selectHexagram()" type="submit">Select</button>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="menu">
+              <button class="item save-button">Save</button>
+            </div>
+          </div>
+          <div class="section">
+            <div class="menu">
+              <button class="item">List</button>
+            </div>
+          </div>
+          <div class="section">
+            <div class="menu">
+              <button class="item export-button">Export</button>
+            </div>
+          </div>
+          <div class="section">
+            <div class="menu">
+              <button class="item import-button">import</button>
+            </div>
+          </div>
         </div>
+          <div class="reader" style="">
+              <div class="display">
+                  <div id="title"></div>
+                  <div class="lines-container">
+                    <div class="lines-block">
+                      <div id="lines"></div>
+                    </div>
+                  </div>
+                  <div id="text"></div>
+                  <div id="SectionSeperator"></div>
+                  <div id="changingTitle"></div>
+                  
+                  <div class="lines-container">
+                    <div class="lines-block">
+                      <div id="changingLines"></div>
+                    </div>
+                  </div>
+                  <div id="changingText"></div>
+              </div>
+          </div>
+          
+           
+      </div>
     </div>
 </body>
 <script
@@ -81,7 +92,7 @@
       if (e.which === 13) {
           // $('.info').submit();
           console.log('form submitted');
-          selectHexagram()
+          
       }
     })
 </script>

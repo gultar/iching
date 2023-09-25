@@ -289,7 +289,7 @@ class Hexagram{
         lineDrawn = "-------&nbsp&nbsp&nbsp------- ";
         break;
       case 9:
-        lineDrawn = "----------------- * ";
+        lineDrawn = "---------------- * ";
         break;
     }
 
