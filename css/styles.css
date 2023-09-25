@@ -1,5 +1,5 @@
 :root{
-    --bg-color:rgb(230, 196, 0);
+    --bg-color:rgb(0, 96, 230);
     --font-color:rgb(255, 255, 255);
     --window-color:rgb(49, 49, 49);
 }
@@ -79,8 +79,13 @@ body{
 
 /* Media Query for smaller screens (adjust the breakpoint as needed) */
 @media screen and (max-width: 768px) {
+    body{
+        padding:2px;
+    }
+    
     .display-window{
         flex-direction: column;
+        height: 97vh;
     }
     .cast-menu {
         width: 100%; /* Take full width on smaller screens */
