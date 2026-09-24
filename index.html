@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/styles.css">
+  <title>I Ching</title>
+</head>
+<body>
+  <div class="container">
+    <div class="display-window">
+      <div class="cast-menu">
+        <div class="section">
+          <div class="menu">
+            <button class="item" onClick="cast()">Cast</button>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="menu selection-menu">
+            <input class="item" placeholder="Hex #" value="" id="hexNumberTextbox" inputmode="numeric" min="1" max="64" />
+            <button class="item select-button" onClick="selectHexagram()" type="submit">Select</button>
+          </div>
+        </div>
+      </div>
+
+      <main class="reader">
+        <div class="display">
+          <section class="reading-block primary-reading">
+            <div id="title"></div>
+            <div class="lines-container">
+              <div class="lines-block">
+                <div id="lines"></div>
+              </div>
+            </div>
+            <div id="text"></div>
+          </section>
+
+          <sectionSeperator id="SectionSeperator"></sectionSeperator>
+
+          <section class="reading-block changing-reading">
+            <div id="changingTitle"></div>
+            <div class="lines-container">
+              <div class="lines-block">
+                <div id="changingLines"></div>
+              </div>
+            </div>
+            <div id="changingText"></div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+  <script>
+    $(document).keypress((e) => {
+      if (e.which === 13) {
+        console.log('form submitted');
+      }
+    })
+  </script>
+  <script src="https://cdn.jsdelivr.net/gh/gultar/iching@main/js/yijing.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/gultar/iching@main/js/eventHandler.js"></script>
+  <script>
+    (function () {
+      Hexagram.prototype.drawLine = function(lineValue) {
+        const broken = lineValue === 6 || lineValue === 8;
+        const changing = lineValue === 6 || lineValue === 9;
+
+        if (broken) {
+          return `
+            <span class="hex-line broken ${changing ? 'changing' : ''}">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="marker">${changing ? '*' : '&nbsp;'}</span>
+            </span>`;
+        }
+
+        return `
+          <span class="hex-line solid ${changing ? 'changing' : ''}">
+            <span class="bar"></span>
+            <span class="marker">${changing ? '*' : '&nbsp;'}</span>
+          </span>`;
+      };
+
+      function clearReading() {
+        $('#title').html('');
+        $('#text').html('');
+        $('#changingTitle').html('');
+        $('#changingText').html('');
+        $('#lines').html('');
+        $('#changingLines').html('');
+        $('sectionSeperator').html('');
+      }
+
+      window.cast = function () {
+        clearReading();
+        var myHex = new Hexagram();
+        myHex.castSixLines();
+        myHex.hexagramNumber = myHex.getHexagramNumber();
+        myHex.getChangingHex();
+        myHex.changingHexagramNumber = myHex.getHexagramNumber(myHex.changingTrigrams);
+
+        $('#title').html(iching.posts[myHex.hexagramNumber - 1].title);
+        $('#text').html(iching.posts[myHex.hexagramNumber - 1].text);
+        $('#changingTitle').html(iching.posts[myHex.changingHexagramNumber - 1].title);
+        $('#changingText').html(iching.posts[myHex.changingHexagramNumber - 1].text);
+
+        for (var i = myHex.sixlines.length - 1; i >= 0; i--) {
+          $('#lines').append('<p>' + myHex.drawLine(myHex.sixlines[i]) + '</p>');
+          $('#changingLines').append('<p>' + myHex.drawLine(myHex.changingLines[i]) + '</p>');
+        }
+
+        $('sectionSeperator').html('<hr><span class="separator-label">Changing Hexagram</span>');
+        updateReadingsStorage(myHex);
+      };
+
+      window.selectHexagram = function () {
+        clearReading();
+        var number = parseInt($('#hexNumberTextbox').val(), 10);
+        if (!number || number < 1 || number > 64) return;
+
+        var myHex = new Hexagram();
+        var ichingHexagramTable = [
+          [1, 34, 5, 26, 11, 9, 14, 43],
+          [25, 51, 3, 27, 24, 42, 21, 17],
+          [6, 40, 29, 4, 7, 59, 64, 47],
+          [33, 62, 39, 52, 15, 53, 56, 31],
+          [12, 16, 8, 23, 2, 20, 35, 45],
+          [44, 32, 48, 18, 46, 57, 50, 28],
+          [13, 55, 63, 22, 36, 37, 30, 49],
+          [10, 54, 60, 41, 19, 61, 38, 58]
+        ];
+        var trigramNbs = ['111', '100', '010', '001', '000', '011', '101', '110'];
+        var bottomTrigramNumber = 0;
+        var topTrigramNumber = 0;
+
+        for (var r = 0; r < ichingHexagramTable.length; r++) {
+          for (var c = 0; c < ichingHexagramTable[r].length; c++) {
+            if (number === ichingHexagramTable[r][c]) {
+              bottomTrigramNumber = r;
+              topTrigramNumber = c;
+            }
+          }
+        }
+
+        var binaryString = trigramNbs[bottomTrigramNumber] + trigramNbs[topTrigramNumber];
+        var binaryLines = binaryString.split('').reverse();
+        var sixlines = [];
+
+        for (var i = 0; i < binaryLines.length; i++) {
+          sixlines[i] = 8 - parseInt(binaryLines[i], 10);
+        }
+
+        for (var j = sixlines.length - 1; j >= 0; j--) {
+          $('#lines').append('<p>' + myHex.drawLine(sixlines[j]) + '</p>');
+        }
+
+        $('#title').html(iching.posts[number - 1].title);
+        $('#text').html(iching.posts[number - 1].text);
+        myHex.trigrams = [bottomTrigramNumber, topTrigramNumber];
+        myHex.hexagramNumber = number;
+        myHex.sixlines = sixlines;
+      };
+    })();
+  </script>
+</body>
+</html>
